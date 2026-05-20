@@ -6,6 +6,10 @@ type ConnectionObject = {
 
 const connection: ConnectionObject = {}
 
+// THERE IS CURRENTLY DUMMY DATA IN THE MONGODB_URI
+// CREATE YOUR OWN DATABASE AND REPLACE THE DUMMY URI WITH REAL ONE
+
+
 async function dbConnect(): Promise<void> {
     if (connection.isConnected) {
         console.log("Already connected to database");    
@@ -21,7 +25,7 @@ async function dbConnect(): Promise<void> {
     } catch (error) {
        console.log("Database connection failed ", error);
 
-       process.exit(1)
+       throw new Error("Database connection failed");
     }
 }
 
