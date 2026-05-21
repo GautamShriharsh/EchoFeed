@@ -1,9 +1,7 @@
-import { sendVerificationEmail } from "@/helpers/sendVerificationEmail";
+import { sendVerificationEmail } from "@/helpers/sendVerificationEmailBrevo";
 import dbConnect from "@/lib/dbConnect";
 import UserModel from "@/models/User";
-import { messageSchema } from "@/schemas/messageSchema";
 import bcrypt from "bcryptjs";
-import { success } from "zod";
 
 
 export async function POST(request: Request){
@@ -64,12 +62,15 @@ export async function POST(request: Request){
 
         }
 
-        // send verification email
-        const emailResponse = await sendVerificationEmail(
-            email,
-            username,
-            verifyCode
-        )
+        // send verification email using Resend
+        // const emailResponse = await sendVerificationEmail(
+        //     email,
+        //     username,
+        //     verifyCode
+        // )
+        
+        // send verification email using Brevo
+        const emailResponse = await sendVerificationEmail(email,username,verifyCode)
 
         if(!emailResponse.success){
             return Response.json({

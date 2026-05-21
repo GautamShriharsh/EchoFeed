@@ -10,7 +10,7 @@ import { Geist } from "next/font/google";
 
 export const metadata: Metadata = {
   title: "EchoFeed",
-  description: "Anonymous feedback platform",
+  description: "Anonymous AI-powered social messaging platform",
 };
 
 const spaceGrotesk = Space_Grotesk({

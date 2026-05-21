@@ -20,7 +20,7 @@ export async function POST() {
       }),
 
       prompt: `
-            Generate 3 engaging anonymous feedback questions.
+            Generate 3 engaging anonymous questions.
 
             Requirements:
             - friendly and conversational

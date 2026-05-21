@@ -9,7 +9,8 @@ const Toaster = ({ ...props }: ToasterProps) => {
 
   return (
     <Sonner
-      theme={theme as ToasterProps["theme"]}
+      richColors
+      theme="dark"
       className="toaster group"
       icons={{
         success: (
@@ -28,19 +29,27 @@ const Toaster = ({ ...props }: ToasterProps) => {
           <Loader2Icon className="size-4 animate-spin" />
         ),
       }}
-      style={
-        {
-          "--normal-bg": "var(--popover)",
-          "--normal-text": "var(--popover-foreground)",
-          "--normal-border": "var(--border)",
-          "--border-radius": "var(--radius)",
-        } as React.CSSProperties
-      }
+     style={
+            {
+              "--normal-bg": "#0f172a",
+              "--normal-text": "#f8fafc",
+              "--normal-border": "rgba(255,255,255,0.08)",
+              "--border-radius": "14px",
+            } as React.CSSProperties
+          }
       toastOptions={{
-        classNames: {
-          toast: "cn-toast",
-        },
-      }}
+            classNames: {
+            toast:
+            "bg-[#111827] border border-white/10 text-white shadow-2xl",
+            title: "text-white font-semibold",
+            description: "text-gray-400",
+            actionButton:
+            "bg-white text-black hover:bg-gray-200",
+            cancelButton:
+            "bg-zinc-800 text-white hover:bg-zinc-700",
+            },
+          }}
+
       {...props}
     />
   )

@@ -34,9 +34,12 @@ type MessageCardProps = {
 function MessageCard({ message, onMessageDelete }: MessageCardProps) {
   const handleDeleteConfirm = async () => {
     const response = await axios.delete<ApiResponse>(
-      `/api/delete-message/${message._id}`,
+      '/api/delete-message',{
+        data: { 
+          messageId: message._id
+        }
+      },
     );
-
     toast(response.data.success ? "Success" : "Error", {
       description: response.data.message,
     });
@@ -46,15 +49,17 @@ function MessageCard({ message, onMessageDelete }: MessageCardProps) {
   return (
     <Card
       className="
-          group
+         group
+          overflow-hidden
           border border-white/10
-          bg-white/5
-          backdrop-blur-md
-          text-white
-          shadow-xl
+          bg-white/[0.03]
+          backdrop-blur-xl
+        text-white
+          shadow-[0_8px_30px_rgba(0,0,0,0.35)]
           rounded-2xl
-          transition-all duration-200
-          hover:border-white/20
+          transition-all duration-300
+        hover:border-cyan-400/20
+        hover:bg-white/[0.05]
         "
     >
       <CardHeader className="flex flex-row items-start justify-between space-y-0">
@@ -90,8 +95,16 @@ function MessageCard({ message, onMessageDelete }: MessageCardProps) {
             </Button>
           </AlertDialogTrigger>
 
-          <AlertDialogContent className="border border-white/10 bg-[#111827] text-white">
-            <AlertDialogHeader>
+              <AlertDialogContent className="border border-white/10
+              bg-[#0b1120]
+                backdrop-blur-2xl
+              text-white
+                shadow-2xl
+                overflow-hidden
+                p-0         ">
+            <AlertDialogHeader 
+            className="px-6 pt-6"
+            >
               <AlertDialogTitle>Delete Message?</AlertDialogTitle>
 
               <AlertDialogDescription className="text-gray-400">
@@ -100,14 +113,16 @@ function MessageCard({ message, onMessageDelete }: MessageCardProps) {
               </AlertDialogDescription>
             </AlertDialogHeader>
 
-            <AlertDialogFooter>
-              <AlertDialogCancel className="border-white/10 bg-white/5 text-white hover:bg-white hover:text-black">
+            <AlertDialogFooter
+            className="bg-[#10182b] px-6 py-4 border-t border-white/5 flex items-center"
+            >
+              <AlertDialogCancel className="border-white/10 bg-[#101d3b] text-gray-600 hover:bg-white hover:text-black mb-2">
                 Cancel
               </AlertDialogCancel>
 
               <AlertDialogAction
                 onClick={handleDeleteConfirm}
-                className="bg-red-500 hover:bg-red-600"
+                className="bg-red-500/20 text-red-300 hover:bg-red-500/30 border border-red-500/10 mb-2" 
               >
                 Delete
               </AlertDialogAction>
