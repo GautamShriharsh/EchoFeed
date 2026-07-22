@@ -15,6 +15,8 @@
     "@hookform/resolvers": "^5.2.2",
     "@react-email/components": "^1.0.12",
     "@types/mongoose": "^5.11.96",
+    "@upstash/ratelimit": "^2.0.8",
+    "@upstash/redis": "^1.38.0",
     "ai": "^6.0.175",
     "axios": "^1.16.0",
     "bcryptjs": "^3.0.3",

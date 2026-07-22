@@ -32,6 +32,8 @@ export async function sendVerificationEmail(
       <p>Your verification code is:</p>
       <h1>${verifyCode}</h1>
       <p>This code expires in 1 hour.</p>
+      <p>Please use the verification code to complete your registration</p>
+      <p>Thank you for registering. </p>
     </div>
   `,
     });

@@ -141,7 +141,7 @@ function SendMessagePage() {
           </form>
 
           <div className="mt-4 space-y-4">
-           <div className="flex justify-center">
+            <div className="flex justify-center">
               <Button
                 type="button"
                 onClick={fetchSuggestions}
@@ -155,7 +155,6 @@ function SendMessagePage() {
             </div>
             {suggestions.length > 0 && (
               <div className="space-y-4">
-      
                 <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                   {suggestions.map((suggestion, index) => (
                     <button
