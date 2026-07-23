@@ -1,8 +1,7 @@
-import { getServerSession } from "next-auth";
-import { authOptions } from "../auth/[...nextauth]/options";
 import dbConnect from "@/lib/dbConnect";
 import UserModel from "@/models/User";
 import { sendMsgRateLimit } from "@/lib/rateLimit";
+import { moderateContent } from "@/lib/gemini-moderation";
 
 
 export async function POST(request: Request) {
@@ -27,22 +26,27 @@ export async function POST(request: Request) {
         },
       }
     );
-  }
-
+  } 
+  
    try {
       await  dbConnect();
       const {username, content} = await request.json();
+      const {category} = await moderateContent(content);
+      
+      const isFlagged = category !== "clean";
 
        const updatedUser = await UserModel.findOneAndUpdate(
       {
         username,
-        isAcceptingMessage: true, // condition inside query
+        isAcceptingMessage: true, // condition only if user is accepting message
       },
       {
         $push: {
           messages: {
             content,
             createdAt: new Date(),
+            isFlagged,
+            flaggedCategory: category,
           },
         },
       },

@@ -133,6 +133,7 @@ function SendMessagePage() {
 
             <Button
               type="submit"
+              disabled={isSubmitting}
               className="h-12 w-full rounded-xl bg-white text-black transition-all hover:bg-zinc-200"
             >
               <SendHorizonal className="mr-2 h-4 w-4" />
