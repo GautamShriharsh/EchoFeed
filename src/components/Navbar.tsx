@@ -28,7 +28,7 @@ function Navbar() {
 
         {/* Right Section */}
         {session ? (
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-6">
             {/* User Info */}
             <div className="hidden sm:flex flex-col items-end">
               <span className="text-[11px] uppercase tracking-[0.2em] text-gray-500">
@@ -47,6 +47,7 @@ function Navbar() {
               className="
                 h-10 rounded-xl
                 border border-white/10
+                hover:cursor-pointer
                 bg-[#0f172a]
                 px-5
                 text-white
@@ -61,25 +62,50 @@ function Navbar() {
             </Button>
           </div>
         ) : (
-          <Link href="/sign-in">
-            <Button
-              variant="outline"
-              className="
-                h-10 rounded-xl
-                border border-white/10
-                bg-[#0f172a]
-                px-5
-                text-white
-                backdrop-blur-md
-                transition-all duration-200
-                hover:bg-white
-                hover:text-black
-                hover:shadow-lg
-              "
-            >
-              Login
-            </Button>
-          </Link>
+          <div className="flex items-center gap-3">
+            {/* Login Button */}
+            <Link href="/sign-in">
+              <Button
+                variant="outline"
+                className="
+                  h-10 rounded-xl
+                  border border-white/10
+                  bg-[#0f172a]
+                  px-5
+                  text-white
+                  backdrop-blur-md
+                  transition-all duration-200
+                  hover:bg-white
+                  hover:text-black
+                  hover:shadow-lg
+                  hover:cursor-pointer
+                  hover:shadow-md hover:shadow-blue-500/20
+                "
+              >
+                Login
+              </Button>
+            </Link>
+
+            {/* Sign Up Button (Primary CTA) */}
+            <Link href="/sign-up">
+              <Button
+                className="
+                  h-10 rounded-xl
+                  bg-[#051e69]
+                  px-5
+                  text-white
+                  font-medium
+                  transition-all duration-200
+                  hover:shadow-md hover:shadow-blue-500/20
+                  hover:cursor-pointer
+                  hover:bg-white
+                  hover:text-black
+                "
+              >
+                Sign Up
+              </Button>
+            </Link>
+          </div>
         )}
       </div>
     </nav>
