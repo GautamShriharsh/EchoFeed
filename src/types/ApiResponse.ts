@@ -4,9 +4,10 @@ import { User } from "next-auth";
 
 export interface ApiResponse {
     success: boolean;
-    message: string;
+    message?: string;
     isAcceptingMessage?: boolean;
     updatedUser?: User
     messages?: Array<Message>
+    error?: string
 }
 

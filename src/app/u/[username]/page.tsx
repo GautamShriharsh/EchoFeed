@@ -61,7 +61,10 @@ function SendMessagePage() {
       form.reset();
     } catch (error) {
       const axiosError = error as AxiosError<ApiResponse>;
-      const errorMessage = axiosError.response?.data.message;
+      const errorMessage =
+              axiosError.response?.data?.message ||
+              axiosError.response?.data?.error ||
+              "An unexpected error occurred. Please try again.";
 
       toast("Failed to send message", {
         description: errorMessage,

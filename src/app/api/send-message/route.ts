@@ -1,33 +1,10 @@
 import dbConnect from "@/lib/dbConnect";
 import UserModel from "@/models/User";
-import { sendMsgRateLimit } from "@/lib/rateLimit";
 import { moderateContent } from "@/lib/gemini-moderation";
 
 
 export async function POST(request: Request) {
    
-   const ip = request.headers.get("x-forwarded-for")?.split(",")[0].trim() 
-    || "127.0.0.1";
-   
-    const { success, limit, reset, remaining } = await sendMsgRateLimit.limit(ip);
-
-    if (!success) {
-    return Response.json(
-      { 
-        success: false,
-        message: "You are sending messages too quickly. Please wait for a minute."
-      },
-      {
-        status: 429, // 429 Too Many Requests
-        headers: {
-          "X-RateLimit-Limit": limit.toString(),
-          "X-RateLimit-Remaining": remaining.toString(),
-          "X-RateLimit-Reset": reset.toString(),
-        },
-      }
-    );
-  } 
-  
    try {
       await  dbConnect();
       const {username, content} = await request.json();
